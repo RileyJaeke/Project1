@@ -8,12 +8,7 @@ board = {1: ' ', 2: ' ', 3: ' ',
          7: ' ', 8: ' ', 9: ' '}
 
 
-test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 new_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-def restore_list():
-    global new_list
-    new_list = test_list
 
 
 def list_choice(new_list):
@@ -30,10 +25,7 @@ def printBoard(board):
     print('\n')
 
 
-playing = True
-complete = False
 turn = 0
-prev_turn = -1
 
 def check_turn(turn):
     if turn % 2 == 0: return 'O'
@@ -80,7 +72,8 @@ def insertLetter(letter, position):
             print('')
             if letter == computer:
                 print("Bot wins!")
-                botWins =+ 1
+                botWins += 1
+                printBoard(board)
                 return
             elif letter == player:
                 print('Player wins!')
@@ -106,32 +99,71 @@ def computerMove():
 
 def main():
     global board
-    exit = 'y'
-    while playerWins < 2 or botWins < 2 and (exit != 'n' and exit == 'y'):
+    global new_list
+    global playerWins
+    global botWins
+    playerWins = 0
+    botWins = 0
+    board = {1: ' ', 2: ' ', 3: ' ',
+             4: ' ', 5: ' ', 6: ' ',
+             7: ' ', 8: ' ', 9: ' '}
+    cease = 'y'
+    printBoard(board)
+    new_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    while playerWins < 2 or botWins < 2 and (cease != 'n' and cease == 'y'):
+        print(new_list)
         playerMove()
+        if playerWins == 2:
+            break
+        if botWins == 2:
+            break
         if check_win(board) or check_draw():
-            restore_list()
             board = {1: ' ', 2: ' ', 3: ' ',
                      4: ' ', 5: ' ', 6: ' ',
                      7: ' ', 8: ' ', 9: ' '}
-            exit = input('Enter "y" to continue or "n" to quit: ')
-            exit.lower().strip()
-            while exit != 'y' and exit != 'n':
-                exit = input('Make sure you enter a "y" or "n": ')
-                exit.lower().strip()
+            new_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            cease = input('Enter "y" to continue or "n" to quit: ')
+            cease.lower().strip()
+            while cease != 'y' and cease != 'n':
+                cease = input('Make sure you enter a "y" or "n": ')
+                cease.lower().strip()
+            if cease == 'n':
+                break
         computerMove()
+        if playerWins == 2:
+            break
+        if botWins == 2:
+            break
         if check_win(board) or check_draw():
-            restore_list()
             board = {1: ' ', 2: ' ', 3: ' ',
                      4: ' ', 5: ' ', 6: ' ',
                      7: ' ', 8: ' ', 9: ' '}
-            exit = input('Enter "y" to continue or "n" to quit: ')
-            exit.lower().strip()
-            while exit != 'y' and exit != 'n':
-                exit = input('Make sure you enter a "y" or "n": ')
-                exit.lower().strip()
+            new_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            cease = input('Enter "y" to continue or "n" to quit: ')
+            cease.lower().strip()
+            while cease != 'y' and cease != 'n':
+                cease = input('Make sure you enter a "y" or "n": ')
+                cease.lower().strip()
+            if cease == 'n':
+                break
+            printBoard(board)
+    if playerWins == 2:
+        playAgain = input('\nThe Player has won the series\nWant to play again? (y/n): ')
+        playAgain.lower().strip()
+        while playAgain != 'y' and playAgain != 'n':
+            playAgain = input('Enter y or n: ')
+            playAgain.lower().strip()
+        if playAgain == 'y':
+            main()
+    if botWins == 2:
+        playAgain = input('\nThe Computer has won the series\nWant to play again? (y/n): ')
+        playAgain.lower().strip()
+        while playAgain != 'y' and playAgain != 'n':
+            playAgain = input('Enter y or n: ')
+            playAgain.lower().strip()
+        if playAgain == 'y':
+            main()
 
 
 if __name__ == '__main__':
-    printBoard(board)
     main()
