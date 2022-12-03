@@ -3,6 +3,9 @@ import re
 from Conversion import *
 from converter import *
 from calculate import *
+import colorama
+from colorama import Fore, Back, Style
+colorama.init()
 import math
 
 
@@ -57,12 +60,15 @@ class Controller(QMainWindow, Ui_mainWindow):
         if  re.search('[a-zA-Z]', self.lereq1.text()) or re.search('[a-zA-Z]',self.lereq2.text()) or self.lereq1.text() == '' or self.lereq2.text() == '':
             self.lereq1.setText("")
             self.lereq2.setText("")
-            self.lblcalc.setText('Measurements need to be numeric')
+            self.lblcalc.setStyleSheet("Color: rgb(255, 0, 0);")
+            self.lblcalc.setText("Measurements need to be numeric")
             self.lblcalc.show()
         elif self.preConvert == '':
+            self.lblcalc.setStyleSheet("Color: rgb(255, 0, 0);")
             self.lblcalc.setText("Press a measurement")
             self.lblcalc.show()
         else:
+            self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
             req1 = float(self.lereq1.text())
             req2 = float(self.lereq2.text())
             if self.shape == 'rectangle':
@@ -98,9 +104,11 @@ class Controller(QMainWindow, Ui_mainWindow):
             self.lblcalc.show()
             self.btnConvert.show()
     def Square(self):
+        self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = 'square'
         self.lblArea.setText("Area of Square")
         self.lereq1.show()
+        self.lblreq1.setText('Enter side length:')
         self.lblreq2.hide()
         self.lereq2.hide()
         self.lereq2.setText("")
@@ -122,13 +130,14 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.lblreq1.show()
 
     def Rectangle(self):
+        self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = 'rectangle'
         self.lblArea.setText("Area of Rectangle")
         self.lereq1.show()
         self.lblreq2.show()
         self.lereq2.show()
-        self.lblreq2.setText("Enter Height")
-        self.lblreq1.setText("Enter Base")
+        self.lblreq2.setText("Enter Height:")
+        self.lblreq1.setText("Enter Base:")
         self.lereq2.setText("")
         self.lereq1.setText("")
         self.radbeginch.show()
@@ -147,13 +156,14 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.lblreq1.show()
         self.lblcalc.hide()
     def Triangle(self):
+        self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = "triangle"
         self.lblArea.setText("Area of Triangle")
         self.lereq1.show()
         self.lblreq2.show()
         self.lereq2.show()
-        self.lblreq2.setText("Enter Height")
-        self.lblreq1.setText("Enter Base")
+        self.lblreq2.setText("Enter Height:")
+        self.lblreq1.setText("Enter Base:")
         self.lereq2.setText("")
         self.lereq1.setText("")
         self.radbeginch.show()
@@ -172,6 +182,7 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.lblreq1.show()
         self.lblcalc.hide()
     def Circle(self):
+        self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = "circle"
         self.lblArea.setText("Area of Circle")
         self.lereq1.show()
@@ -198,6 +209,7 @@ class Controller(QMainWindow, Ui_mainWindow):
 
     def Convert(self):
         if self.radendinch.isChecked():
+            self.lblconvert.setStyleSheet("Color: rgb(0, 0, 0);")
             if self.preConvert == 'in^2':
                 self.lblconvert.setText('No Change')
             elif self.preConvert == 'ft^2':
@@ -218,6 +230,7 @@ class Controller(QMainWindow, Ui_mainWindow):
             self.radendmile.hide()
         elif self.radendft.isChecked():
             if self.preConvert == 'in^2':
+                self.lblconvert.setStyleSheet("Color: rgb(0, 0, 0);")
                 self.conversion = inches_to_feet(self.area)
                 self.lblconvert.setText(f'{self.conversion} ft^2')
             elif self.preConvert == 'ft^2':
@@ -236,6 +249,7 @@ class Controller(QMainWindow, Ui_mainWindow):
             self.radendyrd.hide()
             self.radendmile.hide()
         elif self.radendyrd.isChecked():
+            self.lblconvert.setStyleSheet("Color: rgb(0, 0, 0);")
             if self.preConvert == 'in^2':
                 self.conversion = inches_to_yards(self.area)
                 self.lblconvert.setText(f'{self.conversion} yd^2')
@@ -255,6 +269,7 @@ class Controller(QMainWindow, Ui_mainWindow):
             self.radendyrd.hide()
             self.radendmile.hide()
         elif self.radendmile.isChecked():
+            self.lblconvert.setStyleSheet("Color: rgb(0, 0, 0);")
             if self.preConvert == 'in^2':
                 self.conversion = inches_to_miles(self.area)
                 self.lblconvert.setText(f'{self.conversion} mi^2')
@@ -274,6 +289,7 @@ class Controller(QMainWindow, Ui_mainWindow):
             self.radendyrd.hide()
             self.radendmile.hide()
         else:
+            self.lblconvert.setStyleSheet("Color: rgb(255, 0, 0);")
             self.lblconvert.setText("Choose a measurement")
             self.lblconvert.show()
 
