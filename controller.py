@@ -3,9 +3,6 @@ import re
 from Conversion import *
 from converter import *
 from calculate import *
-import colorama
-from colorama import Fore, Back, Style
-colorama.init()
 import math
 
 
