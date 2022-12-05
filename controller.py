@@ -6,6 +6,7 @@ from calculate import *
 import math
 
 
+
 class Controller(QMainWindow, Ui_mainWindow):
 
     def __init__(self, *args, **kwargs):
@@ -54,11 +55,12 @@ class Controller(QMainWindow, Ui_mainWindow):
             self.preConvert = "yd^2"
         elif self.radbegmile.isChecked():
             self.preConvert = "mi^2"
-        if  re.search('[a-zA-Z]', self.lereq1.text()) or re.search('[a-zA-Z]',self.lereq2.text()) or self.lereq1.text() == '' or self.lereq2.text() == '':
+        if  re.search('[a-zA-Z]', self.lereq1.text()) or re.search('[a-zA-Z]',self.lereq2.text()) or self.lereq1.text()\
+                == '' or self.lereq2.text() == '' or (float(self.lereq1.text()) < 0) or (float(self.lereq2.text()) < 0):
             self.lereq1.setText("")
             self.lereq2.setText("")
             self.lblcalc.setStyleSheet("Color: rgb(255, 0, 0);")
-            self.lblcalc.setText("Measurements need to be numeric")
+            self.lblcalc.setText("Measurements need to be numeric and positive")
             self.lblcalc.show()
         elif self.preConvert == '':
             self.lblcalc.setStyleSheet("Color: rgb(255, 0, 0);")
