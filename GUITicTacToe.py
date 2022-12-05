@@ -93,7 +93,6 @@ class Ui_Form(object):
     def btnClk(self, pos):
         global playFlag, mark
         mark = 'X'
-        print(placement)
 
 
         if pos == 1:
@@ -136,7 +135,6 @@ class Ui_Form(object):
 
         playFlag += 1
         self.bot()
-        print(placement)
         self.chkWin()
 
 
@@ -321,7 +319,6 @@ class Ui_Form(object):
 
 if __name__ == "__main__":
     import sys
-    bruh = []
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
     ui = Ui_Form()
