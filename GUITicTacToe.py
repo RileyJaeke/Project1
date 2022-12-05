@@ -167,12 +167,12 @@ class Ui_Form(object):
             winner = 'none'
         if winner == 'X':
             playerX += 1
-            self.Result1.setText('Player 1: '+str(playerX))
+            self.Result1.setText('Player X: '+str(playerX))
             self.resetBoard()
             placement = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         if winner == 'O':
             playerO += 1
-            self.Result2.setText('Player 2: '+str(playerO))
+            self.Result2.setText('Player O: '+str(playerO))
             self.resetBoard()
             placement = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         if winner == 'none':
