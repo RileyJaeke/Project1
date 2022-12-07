@@ -9,7 +9,12 @@ import math
 
 class Controller(QMainWindow, Ui_mainWindow):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
+        """
+        Initializes GUI
+        :param args:
+        :param kwargs:
+        """
         super().__init__(*args, **kwargs)
         self.setupUi(self)
         self.btnCalc.clicked.connect(lambda: self.Calculate())
@@ -19,15 +24,6 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.actionTriangle.triggered.connect(lambda: self.Triangle())
         self.actionCircle.triggered.connect(lambda: self.Circle())
 
-        """
-        PreConvert will help us determine what measurement we're using in if statements.
-        I.E. if we chose the inch button, label will equal "
-        """
-        self.preConvert = ""
-        """
-        shape will help us determine what area calculation we're using in if statements. SO when we click a shape
-        shape will equal which one we press I.E. if shape = square, we use the square area calc
-        """
         self.shape = 'rectangle'
         self.radendft.hide()
         self.radendyrd.hide()
@@ -41,7 +37,11 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.area = 0.0
         self.conversion = 0.0
 
-    def Calculate(self):
+    def Calculate(self)-> None:
+        """
+        Calculates the area of the chosen shape
+        :return:
+        """
         self.lereq1.text().strip()
         self.lereq2.text().strip()
         if self.lereq2.isHidden():
@@ -102,7 +102,11 @@ class Controller(QMainWindow, Ui_mainWindow):
             self.lblOriginal.show()
             self.lblcalc.show()
             self.btnConvert.show()
-    def Square(self):
+    def Square(self) -> None:
+        """
+        Sets up the gui for the square option
+        :return:
+        """
         self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = 'square'
         self.lblArea.setText("Area of Square")
@@ -128,7 +132,11 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.lblcalc.hide()
         self.lblreq1.show()
 
-    def Rectangle(self):
+    def Rectangle(self) -> None:
+        """
+        Sets up the gui for the rectangle option
+        :return:
+        """
         self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = 'rectangle'
         self.lblArea.setText("Area of Rectangle")
@@ -154,7 +162,11 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.btnCalc.show()
         self.lblreq1.show()
         self.lblcalc.hide()
-    def Triangle(self):
+    def Triangle(self) -> None:
+        """
+        Sets up the gui for the Triangle option
+        :return:
+        """
         self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = "triangle"
         self.lblArea.setText("Area of Triangle")
@@ -180,7 +192,11 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.btnCalc.show()
         self.lblreq1.show()
         self.lblcalc.hide()
-    def Circle(self):
+    def Circle(self) -> None:
+        """
+        Sets up the gui for the circle option
+        :return:
+        """
         self.lblcalc.setStyleSheet("Color: rgb(0, 0, 0);")
         self.shape = "circle"
         self.lblArea.setText("Area of Circle")
@@ -206,7 +222,11 @@ class Controller(QMainWindow, Ui_mainWindow):
         self.lblreq1.show()
         self.lblcalc.hide()
 
-    def Convert(self):
+    def Convert(self) -> None:
+        """
+        Converts the measurement to another measurement
+        :return:
+        """
         if self.radendinch.isChecked():
             self.lblconvert.setStyleSheet("Color: rgb(0, 0, 0);")
             if self.preConvert == 'in^2':

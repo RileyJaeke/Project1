@@ -19,8 +19,12 @@ winner = ''
 mark = ''
 
 class Ui_Form(object):
-
-    def resetBoard(self):
+    def resetBoard(self) -> None:
+        """
+        Resets board function
+        :param self:
+        :return:
+        """
         global playFlag, placement
         playFlag = 0
         placement = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -44,53 +48,65 @@ class Ui_Form(object):
         self.pa8.setText('')
         self.pa9.setText('')
 
-    def bot(self):
-            global playFlag
-            mark = 'O'
-            pos = 0
-            if placement:
-                pos = random.choice(placement)
-            if pos == 1:
-                self.pa1.setText(mark)
-                self.pa1.setEnabled(False)
-                placement.remove(pos)
 
-            if pos == 2:
-                self.pa2.setText(mark)
-                self.pa2.setEnabled(False)
-                placement.remove(pos)
-            if pos == 3:
-                self.pa3.setText(mark)
-                self.pa3.setEnabled(False)
-                placement.remove(pos)
-            if pos == 4:
-                self.pa4.setText(mark)
-                self.pa4.setEnabled(False)
-                placement.remove(pos)
-            if pos == 5:
-                self.pa5.setText(mark)
-                self.pa5.setEnabled(False)
-                placement.remove(pos)
-            if pos == 6:
-                self.pa6.setText(mark)
-                self.pa6.setEnabled(False)
-                placement.remove(pos)
-            if pos == 7:
-                self.pa7.setText(mark)
-                self.pa7.setEnabled(False)
-                placement.remove(pos)
-            if pos == 8:
-                self.pa8.setText(mark)
-                self.pa8.setEnabled(False)
-                placement.remove(pos)
-            if pos == 9:
-                self.pa9.setText(mark)
-                self.pa9.setEnabled(False)
-                placement.remove(pos)
-            playFlag+= 1
+    def bot(self) -> None:
+        """
+        Function so rival bot chooses a tile
+        :param self:
+        :return:
+        """
+        global playFlag
+        mark = 'O'
+        pos = 0
+        if placement:
+            pos = random.choice(placement)
+        if pos == 1:
+            self.pa1.setText(mark)
+            self.pa1.setEnabled(False)
+            placement.remove(pos)
 
+        if pos == 2:
+            self.pa2.setText(mark)
+            self.pa2.setEnabled(False)
+            placement.remove(pos)
+        if pos == 3:
+            self.pa3.setText(mark)
+            self.pa3.setEnabled(False)
+            placement.remove(pos)
+        if pos == 4:
+            self.pa4.setText(mark)
+            self.pa4.setEnabled(False)
+            placement.remove(pos)
+        if pos == 5:
+            self.pa5.setText(mark)
+            self.pa5.setEnabled(False)
+            placement.remove(pos)
+        if pos == 6:
+            self.pa6.setText(mark)
+            self.pa6.setEnabled(False)
+            placement.remove(pos)
+        if pos == 7:
+            self.pa7.setText(mark)
+            self.pa7.setEnabled(False)
+            placement.remove(pos)
+        if pos == 8:
+            self.pa8.setText(mark)
+            self.pa8.setEnabled(False)
+            placement.remove(pos)
+        if pos == 9:
+            self.pa9.setText(mark)
+            self.pa9.setEnabled(False)
+            placement.remove(pos)
+        playFlag += 1
 
-    def btnClk(self, pos):
+    def btnClk(self, pos: int) -> None:
+        """
+        Register what tile the user clicks
+        :param self:
+        :param pos: Holds position of tile
+        :type pos: int
+        :return:
+        """
         global playFlag, mark
         mark = 'X'
 
@@ -142,8 +158,12 @@ class Ui_Form(object):
 
 
 
-
-    def chkWin(self):
+    def chkWin(self) -> None:
+        """
+        Checks to see if either player has won
+        :param self:
+        :return:
+        """
         global playerX, playerO, winner, placement
         winner = ''
 
@@ -181,7 +201,14 @@ class Ui_Form(object):
 
 
 
-    def setupUi(self, Form):
+    def setupUi(self, Form: str) -> None:
+        """
+        Designer layout
+        :param self:
+        :param Form:
+        :type Form: str
+        :return:
+        """
         Form.setObjectName("Form")
         Form.resize(365, 449)
         self.gridLayoutWidget = QtWidgets.QWidget(Form)
@@ -288,13 +315,15 @@ class Ui_Form(object):
         self.Result2.setGeometry(QtCore.QRect(230, 370, 111, 71))
         self.Result2.setObjectName("Result2")
 
-        #reset
+        #reset button
         self.resetButton = QtWidgets.QPushButton(Form)
         self.resetButton.setGeometry(QtCore.QRect(120, 360, 101, 93))
         self.resetButton.setMinimumSize(QtCore.QSize(93, 93))
         self.resetButton.setObjectName("resetButton")
         self.resetButton.clicked.connect(self.resetBoard)
 
+
+        #connects button to function
         self.pa1.clicked.connect(lambda: self.btnClk(1))
         self.pa2.clicked.connect(lambda: self.btnClk(2))
         self.pa3.clicked.connect(lambda: self.btnClk(3))
@@ -309,7 +338,12 @@ class Ui_Form(object):
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, Form: str) -> None:
+        """
+        :param self:
+        :param Form:
+        :return:
+        """
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.Result1.setText(_translate("Form", "Player X : 0"))
